@@ -3,19 +3,24 @@ package bigchat;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 
 public class BigChat {
@@ -66,7 +71,7 @@ public class BigChat {
         BigChat.createInkCombo(composite);
         checkButton = new Button((Composite)shell, 32);
         checkButton.setText("Vertical words");
-        checkButton.setSelection(false);
+        checkButton.setSelection(true);
         checkButton.addSelectionListener(new SelectionListener(){
 
             public void widgetSelected(SelectionEvent e) {
@@ -78,11 +83,21 @@ public class BigChat {
         });
         label = new Label((Composite)shell, 1);
         text = new StyledText((Composite)shell, 2048);
+        Link link = new Link((Composite)shell, 1);
+        link.setLayoutData((Object)new GridData(400, 30));
+        String url= "https://github.com/MHRahman/BigChat";
+        link.setText("<a href=\"" + url + "\">About</a>"); //$NON-NLS-1$ //$NON-NLS-2$
+        link.addSelectionListener(new SelectionAdapter() {
+          public void widgetSelected(SelectionEvent e) {
+            Program.launch(url);
+          }      
+        });
         text.setText("");
         text.setLayoutData((Object)new GridData(300, 100));
         label.setLayoutData((Object)new GridData(400, 30));
+        label.setText("Write your message below!");
         text.addKeyListener(keyListener);
-        shell.setSize(400, 300);
+        shell.setSize(400, 400);
         shell.open();
     }
 
