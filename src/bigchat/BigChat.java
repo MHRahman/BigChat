@@ -1,4 +1,4 @@
-package my.bigchat;
+package bigchat;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;

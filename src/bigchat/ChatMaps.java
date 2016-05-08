@@ -1,4 +1,4 @@
-package my.bigchat;
+package bigchat;
 
 import java.util.HashMap;
 import java.util.Map;
